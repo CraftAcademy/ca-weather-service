@@ -47,7 +47,7 @@ module SMHIService
 
   def self.build_forecast_array(feed)
     forecast_feed = []
-    feed['timeSeries'][0..11].each do |obj|
+    feed['timeSeries'][0..2].each do |obj|
       time = DateTime.parse(obj['validTime']).strftime('%H:%M')
       weather_value = obj['parameters'].detect {|obj| obj['name'] == 'Wsymb2'}['values'].first
       weather_in_words = parse_current_weather_value(weather_value)
