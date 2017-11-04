@@ -15,6 +15,7 @@ def get_forecast(params = {})
     @current_forecast = forecast[:message]
   else
     @current_forecast = "Conditions in #{city} are #{forecast[:forecast]} with a temperature of #{forecast[:temperature]}"
+    @current_forecast += "\n\n#{APP_NAME} is a service from Craft Academy"
   end
 end
 
