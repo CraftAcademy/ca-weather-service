@@ -10,6 +10,10 @@ gem 'sinatra-contrib'
 gem 'activesupport'
 gem 'activerecord'
 gem 'bcrypt-ruby'
+gem 'httparty'
+gem 'twilio-ruby'
+gem 'geocoder'
+gem 'dotenv'
 
 gem 'rake'
 
@@ -26,4 +30,5 @@ end
 group :test, :development do
   gem 'factory_girl'
   gem 'faker'
+  gem 'pry-byebug'
 end
