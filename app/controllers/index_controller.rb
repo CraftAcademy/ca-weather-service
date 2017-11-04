@@ -11,11 +11,14 @@ end
 
 def get_forecast(params = {})
   forecast = SMHIService.get_forecast(city = params[:city], country = params[:country])
-  if forecast[:message]
+  if forecast.try(:message)
     @current_forecast = forecast[:message]
   else
-    @current_forecast = "Conditions in #{city} are #{forecast[:forecast]} with a temperature of #{forecast[:temperature]}"
-    @current_forecast += "\n\n#{APP_NAME} is a service from Craft Academy"
+    @current_forecast = "Conditions in #{city} for the upcoming #{forecast.size} hours:"
+    forecast.each do |slot|
+      @current_forecast += "\n - #{slot[:time]}: #{slot[:forecast]}, #{slot[:temperature]} with #{slot[:wind_direction]} winds up to #{slot[:wind_direction]} meters/second"
+    end
+    @current_forecast += "\n\nWeather-SMS is a service from Craft Academy"
   end
 end
 
