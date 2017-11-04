@@ -5,10 +5,6 @@ module SMHIService
     begin
       lat, lon = Geocoder.coordinates("#{city}, #{country}")
       feed = HTTParty.get("#{API_URL}/category/pmp3g/version/2/geotype/point/lon/#{lon.round(5)}/lat/#{lat.round(5)}/data.json")
-      #temperature = feed.parsed_response['timeSeries'].first['parameters'].detect {|obj| obj['name'] == 't'}['values'].first
-      #current_weather_value = feed.parsed_response['timeSeries'].first['parameters'].detect {|obj| obj['name'] == 'Wsymb2'}['values'].first
-      #current_weather_in_words = parse_current_weather_value(current_weather_value)
-      #{forecast: current_weather_in_words, temperature: "#{temperature}℃"}
       build_forecast_array(feed)
     rescue
       {message: 'Could not perform operation'}

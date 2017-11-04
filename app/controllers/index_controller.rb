@@ -16,7 +16,7 @@ def get_forecast(params = {})
   else
     @current_forecast = "Conditions in #{city} for the upcoming #{forecast.size} hours:"
     forecast.each do |slot|
-      @current_forecast += "\n - #{slot[:time]}: #{slot[:forecast]}, #{slot[:temperature]} with #{slot[:wind_direction]} winds up to #{slot[:wind_direction]} meters/second"
+      @current_forecast += "\n - #{slot[:time]}: #{slot[:forecast]}, #{slot[:temperature]}℃, with #{slot[:wind_direction]} winds up to #{slot[:wind_speed]} meters/second"
     end
     @current_forecast += "\n\nWeather-SMS is a service from Craft Academy"
   end
