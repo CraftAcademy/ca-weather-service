@@ -20,6 +20,7 @@ require 'geocoder'
 
 require 'sinatra'
 require 'erb'
+require 'skylight'
 
 if development?
   require 'sinatra/reloader'
