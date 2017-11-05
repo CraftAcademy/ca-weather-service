@@ -19,10 +19,15 @@ require 'twilio-ruby'
 require 'geocoder'
 
 require 'sinatra'
-require "sinatra/reloader" if development?
-
 require 'erb'
-require 'pry' unless ENV["RACK_ENV"] == 'production'
+
+if development?
+  require 'sinatra/reloader'
+  require 'dotenv'
+  require 'pry'
+  Dotenv.load
+end
+
 
 # Some helper constants for path-centric logic
 APP_ROOT = Pathname.new(File.expand_path('../../', __FILE__))
@@ -38,7 +43,7 @@ configure do
   set :session_secret, ENV['SESSION_SECRET'] || 'this is a secret shhhhh'
 
   # Set the views to
-  set :views, File.join(Sinatra::Application.root, "app", "views")
+  set :views, File.join(Sinatra::Application.root, 'app', 'views')
 end
 
 # Set up the controllers and helpers
